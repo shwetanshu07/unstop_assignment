@@ -1,14 +1,19 @@
 # Unstop Seat Reservation Assignment
 
 🌐 **Live Website** - https://unstop-assignment-five.vercel.app/
+
 📗 **Seat booking logic code** - <a href="https://github.com/shwetanshu07/unstop_assignment/blob/3c9d2f7759589f6c2ee4b9ba914d4406b1c3c41f/src/bookSeat.js">File link</a>
 
 ## Assumptions
 1. First priority is to book as many seats in 1 row (acc. to Point 3 in Problem Description).
 2. Proximity within one row is not taken into consideration as it was not explicitly stated. So consider the example - 
+
 R1 - | vacant  | vacant  | vacant | vacant  | vacant | vacant  | vacant |
+
 R2 - | vacant  | vacant  | booked| vacant | vacant  | vacant | vacant |
+
 In this case if you were to book 5 seats it can be allotted in R2 as they are still all together in one row (but not all together as there is one other booking).
+
 3. If there are some seats that cannot be booked in one single row, they will be booked in the next closet row which can accommodate them.
 
 ## General Logic of seat booking
