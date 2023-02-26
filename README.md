@@ -1,70 +1,27 @@
-# Getting Started with Create React App
+# Unstop Seat Reservation Assignment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+🌐 **Live Website** - https://unstop-assignment-five.vercel.app/
+📗 **Seat booking logic code** - <a href="https://github.com/shwetanshu07/unstop_assignment/blob/3c9d2f7759589f6c2ee4b9ba914d4406b1c3c41f/src/bookSeat.js">File link</a>
 
-## Available Scripts
+## Assumptions
+1. First priority is to book as many seats in 1 row (acc. to Point 3 in Problem Description).
+2. Proximity within one row is not taken into consideration as it was not explicitly stated. So consider the example - 
+R1 - | vacant  | vacant  | vacant | vacant  | vacant | vacant  | vacant |
+R2 - | vacant  | vacant  | booked| vacant | vacant  | vacant | vacant |
+In this case if you were to book 5 seats it can be allotted in R2 as they are still all together in one row (but not all together as there is one other booking).
+3. If there are some seats that cannot be booked in one single row, they will be booked in the next closet row which can accommodate them.
 
-In the project directory, you can run:
+## General Logic of seat booking
+1. If the total empty seats < seats to book -> return error
+2. Otherwise, get the number of empty seats in each row.
+3. First try to book all the seats in one row R. Here R will be such a row that it has the least number of empty seats capable to fully accomodate the number of seats to book. Example - R1 with 7 empty seats and R2 with 5 empty seats and we need to book 3 seats , we will choose R2.
+4. If there is no row capable of booking all the seats in one row then choose that row which has the maximum number of empty seats, so we can book as many seats in same row as possible.
+5. Then check the number of seats left, say X, find a row which can fully accomodate the X seats and which is closest to the previous booked row and choose that row.
+6. If no such row exists then book row with second highest empty seats - priority given to booking as many seats in one row. Continue step 5 and 6 till there are no seats left.
 
-### `npm start`
+Explanation for point 4.
+<img src="https://github.com/shwetanshu07/unstop_assignment/blob/587d5cd5de78d48ab36cd47801dd960ffc3b65ac/images/explanation.png">
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Shortcomings in the algo. right now
+<img src="https://github.com/shwetanshu07/unstop_assignment/blob/587d5cd5de78d48ab36cd47801dd960ffc3b65ac/images/shortcoming1.png">
+<img src="https://github.com/shwetanshu07/unstop_assignment/blob/587d5cd5de78d48ab36cd47801dd960ffc3b65ac/images/shortcoming2.png">
