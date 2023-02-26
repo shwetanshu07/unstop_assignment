@@ -6,7 +6,7 @@
 
 ## Assumptions
 1. First priority is to book as many seats in 1 row (acc. to Point 3 in Problem Description).
-2. Proximity within one row is not taken into consideration as it was not explicitly stated. So consider the example - 
+2. Proximity within one row is not taken into consideration as it was not explicitly stated. Example - 
 
 R1 - | vacant  | vacant  | vacant | vacant  | vacant | vacant  | vacant |
 
